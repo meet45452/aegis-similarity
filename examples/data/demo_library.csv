@@ -1,0 +1,38 @@
+name,smiles,category
+aspirin,CC(=O)Oc1ccccc1C(=O)O,NSAID
+ibuprofen,CC(C)Cc1ccc(C(C)C(=O)O)cc1,NSAID
+naproxen,COc1ccc2cc(ccc2c1)C(C)C(=O)O,NSAID
+ketoprofen,CC(C(=O)O)c1cccc(c1)C(=O)c1ccccc1,NSAID
+flurbiprofen,CC(C(=O)O)c1ccccc1-c1cccc(F)c1,NSAID
+diclofenac,O=C(O)Cc1ccccc1Nc1c(Cl)cccc1Cl,NSAID
+mefenamic acid,Cc1cccc(C)c1Nc1ccccc1C(=O)O,NSAID
+paracetamol,CC(=O)Nc1ccc(O)cc1,analgesic
+phenacetin,CCOc1ccc(NC(C)=O)cc1,analgesic
+salicylic acid,OC(=O)c1ccccc1O,salicylate
+benzoic acid,OC(=O)c1ccccc1,aromatic acid
+4-aminobenzoic acid,Nc1ccc(C(=O)O)cc1,aromatic acid
+benzamide,NC(=O)c1ccccc1,aromatic amide
+propranolol,CC(C)NCC(O)COc1cccc2ccccc12,beta-blocker
+atenolol,CC(C)NCC(O)COc1ccc(CC(N)=O)cc1,beta-blocker
+warfarin,CC(=O)CC(c1ccccc1)c1c(O)c2ccccc2oc1=O,anticoagulant
+diazepam,CN1C(=O)CN=C(c2ccccc2)c2ccccc21,benzodiazepine
+chloroquine,CCN(CC)CCCC(C)Nc1ccnc2cc(Cl)ccc12,antimalarial
+caffeine,CN1C=NC2=C1C(=O)N(C)C(=O)N2C,xanthine
+nicotine,CN1CCCC1c1cccnc1,stimulant
+fluoxetine,CNCCC(Oc1ccc(C(F)(F)F)cc1)c1ccccc1,SSRI
+diphenhydramine,CN(C)CCOC(c1ccccc1)c1ccccc1,antihistamine
+lidocaine,CCN(CC)CC(=O)Nc1c(C)cccc1C,local anaesthetic
+procainamide,CCN(CC)CC(=O)Nc1ccc(N)cc1,antiarrhythmic
+benzocaine,CCOC(=O)c1ccc(N)cc1,local anaesthetic
+sulfanilamide,Nc1ccc(S(=O)(=O)N)cc1,sulfonamide
+sulfamethoxazole,Cc1cc(NS(=O)(=O)c2ccc(N)cc2)no1,sulfonamide
+dapsone,Nc1ccc(S(=O)(=O)c2ccc(N)cc2)cc1,sulfonamide
+metformin,CN(C)C(=N)N=C(N)N,biguanide
+nifedipine,COC(=O)C1=C(C)NC(C)=C(C1c2ccccc2[N+](=O)[O-])C(=O)OC,calcium channel blocker
+quinoline,c1ccc2ncccc2c1,heteroaromatic
+isoquinoline,c1ccc2cnccc2c1,heteroaromatic
+indole,c1ccc2[nH]ccc2c1,heteroaromatic
+benzimidazole,c1ccc2[nH]cnc2c1,heteroaromatic
+adenine,Nc1ncnc2[nH]cnc12,nucleobase
+4-aminoquinazoline,Nc1ncnc2ccccc12,kinase hinge motif
+2-aminopyrimidine,Nc1ncccn1,kinase hinge motif
