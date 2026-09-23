@@ -1,8 +1,6 @@
 """Tests for the individual similarity channels."""
 
-from __future__ import annotations
-
-import numpy as np
+from __future__ import annotationsn
 import pytest
 
 from aegis.channels.conformer import ConformerChannel
@@ -73,13 +71,14 @@ def test_property_and_synthesis_channels(library):
     assert property_channel.similarity(aspirin, aspirin) == pytest.approx(1.0)
     assert property_channel.similarity(aspirin, paracetamol) > 0.5
     assert synthesis_channel.similarity(aspirin, aspirin) == pytest.approx(1.0)
-    assert aspirin.synthetic_complexity != pytest.approx(caffeine.synthetic_complexity)
+    assert aspirin.synthetic_complexity != caffeine.synthetic_complexity
 
 
 def test_interaction_fingerprint_makes_contacts(library, aspirin_pose, pocket_around_aspirin):
     fingerprint = interaction_fingerprint(aspirin_pose, pocket_around_aspirin, cutoff=4.5)
     assert fingerprint  # the synthetic pocket produces contacts
-    assert all(contact_type in {"hbond", "hydrophobic", "aromatic", "ionic"} for _, contact_type in fingerprint)
+    valid_types = {"hbond", "hydrophobic", "aromatic", "ionic"}
+    assert all(contact_type in valid_types for _, contact_type in fingerprint)
 
 
 def test_interaction_channel_self_similarity(library, aspirin_pose, pocket_around_aspirin):

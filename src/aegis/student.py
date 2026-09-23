@@ -77,7 +77,14 @@ class StudentEmbedder:
         np.savez(path, mean=mean, components=components)
 
     @classmethod
-    def load(cls, path: str, radius: int = 2, bits: int = 1024, dim: int = 256) -> "StudentEmbedder":
+    def load(
+        cls,
+        path: str,
+        radius: int = 2,
+        bits: int = 1024,
+        dim: int = 256,
+    ) -> "StudentEmbedder":
+        """Load a persisted projection."""
         embedder = cls(radius=radius, bits=bits, dim=dim)
         data = np.load(path)
         mean = data["mean"] if "mean" in data.files else np.zeros(0)

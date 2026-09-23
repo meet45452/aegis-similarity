@@ -17,8 +17,8 @@ LABEL_DESCRIPTIONS: dict[str, str] = {
         "Scaffold hop: different Murcko framework but matching 3D/field profile at low uncertainty."
     ),
     "high_upside_uncertain": (
-        "High-upside hypothesis: scaffold hop with meaningful similarity but elevated uncertainty - "
-        "assay data on this candidate would most improve the model."
+        "High-upside hypothesis: scaffold hop with meaningful similarity but "
+        "elevated uncertainty - assay data here would most improve the model."
     ),
     "novelty_candidate": (
         "Topology-distant candidate retained for novelty / IP-distance exploration."
@@ -48,7 +48,11 @@ def explain_result(result: CandidateResult, query: MoleculeRecord) -> str:
         parts.append(label_note)
 
     contributions = sorted(
-        (channel_score for channel_score in result.channel_scores if channel_score.contribution is not None),
+        (
+            channel_score
+            for channel_score in result.channel_scores
+            if channel_score.contribution is not None
+        ),
         key=lambda channel_score: channel_score.contribution or 0.0,
         reverse=True,
     )
@@ -64,7 +68,8 @@ def explain_result(result: CandidateResult, query: MoleculeRecord) -> str:
     if result.scaffold_hop:
         parts.append(
             f"Murcko scaffold differs from the query "
-            f"({query.generic_scaffold or 'acyclic'} -> {result.record.generic_scaffold or 'acyclic'}): "
+            f"({query.generic_scaffold or 'acyclic'} "
+            f"-> {result.record.generic_scaffold or 'acyclic'}): "
             "a scaffold-hop candidate."
         )
     else:

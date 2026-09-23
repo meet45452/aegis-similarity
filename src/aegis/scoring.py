@@ -99,13 +99,17 @@ class AegisScorer:
             sum(weights[name] * available[name] for name in available)
             - self.config.lambda_uncertainty * uncertainty.total
         )
-        channel_scores = [
-            ChannelScore(
-                channel=name,
-                value=values.get(name),
-                weight=weights.get(name, 0.0) if name in available else 0.0,
-                contribution=weights.get(name, 0.0) * available[name] if name in available else None,
+
+        channel_scores: list[ChannelScore] = []
+        for name in self.channels:
+            weight = weights.get(name, 0.0) if name in available else 0.0
+            contribution = weight * available[name] if name in available else None
+            channel_scores.append(
+                ChannelScore(
+                    channel=name,
+                    value=values.get(name),
+                    weight=weight,
+                    contribution=contribution,
+                )
             )
-            for name in self.channels
-        ]
         return score, channel_scores, uncertainty

@@ -67,7 +67,6 @@ RESIDUE_SIDECHAIN_CLASSES: dict[str, tuple[str, ...]] = {
     "GLY": (),
 }
 
-_CONTACT_TYPES = ("hbond", "hydrophobic", "aromatic", "ionic")
 _WATER_RESNAMES = {"HOH", "WAT", "H2O", "DOD"}
 
 
@@ -129,7 +128,12 @@ class Pocket:
                     resid = 0
                 groups.setdefault((chain, resid, resname), []).append([x, y, z])
         residues = [
-            Residue(resname=key[2], resid=key[1], chain=key[0], coords=np.asarray(value, dtype=float))
+            Residue(
+                resname=key[2],
+                resid=key[1],
+                chain=key[0],
+                coords=np.asarray(value, dtype=float),
+            )
             for key, value in sorted(groups.items())
         ]
         return cls(residues=residues)
@@ -297,7 +301,9 @@ class InteractionChannel:
         best: dict[tuple[str, str], int] | None = None
         best_total = -1
         for posed_mol, conf_id in poses:
-            fingerprint = interaction_fingerprint(posed_mol, self.bundle.pocket, self.cutoff, conf_id)
+            fingerprint = interaction_fingerprint(
+                posed_mol, self.bundle.pocket, self.cutoff, conf_id
+            )
             total = sum(fingerprint.values())
             if total > best_total:
                 best_total = total

@@ -60,7 +60,10 @@ class ConformerChannel:
             return None, None
         pair_scores = np.array(
             [
-                [usr_similarity(query_moments, cand_moments) for cand_moments in cand_ensemble.usr]
+                [
+                    usr_similarity(query_moments, cand_moments)
+                    for cand_moments in cand_ensemble.usr
+                ]
                 for query_moments in query_ensemble.usr
             ]
         )
@@ -84,5 +87,7 @@ class ConformerChannel:
         pair_scores, energy_sums = self._pair_matrices(query, cand)
         if pair_scores is None:
             return None
-        _, spread = ensemble_aggregate(pair_scores, energy_sums, self.energy_alpha, self.temperature)
+        _, spread = ensemble_aggregate(
+            pair_scores, energy_sums, self.energy_alpha, self.temperature
+        )
         return spread

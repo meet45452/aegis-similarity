@@ -15,11 +15,13 @@ from __future__ import annotations
 
 import numpy as np
 
-from aegis.chemistry import ATOM_CLASSES
 from aegis.types import MoleculeRecord
 
 
-def _pair_field_similarity(features_a: dict[str, np.ndarray], features_b: dict[str, np.ndarray]) -> float:
+def _pair_field_similarity(
+    features_a: dict[str, np.ndarray],
+    features_b: dict[str, np.ndarray],
+) -> float:
     keys_a = {key for key in features_a if not key.startswith("_")}
     keys_b = {key for key in features_b if not key.startswith("_")}
     similarities: list[float] = []
