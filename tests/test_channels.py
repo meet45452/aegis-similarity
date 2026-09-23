@@ -1,6 +1,7 @@
 """Tests for the individual similarity channels."""
 
-from __future__ import annotationsn
+from __future__ import annotations
+
 import pytest
 
 from aegis.channels.conformer import ConformerChannel

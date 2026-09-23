@@ -370,7 +370,9 @@ def generate_conformer_ensemble(
 
     weights = boltzmann_weights(np.asarray(kept_energies), temperature)
     usr = [usr_moments(positions) for positions in kept_positions]
-    fields = [field_features(positions, heavy_classes, heavy_charges) for positions in kept_positions]
+    fields = [
+        field_features(positions, heavy_classes, heavy_charges) for positions in kept_positions
+    ]
     return ConformerEnsemble(
         mol=work,
         conformer_ids=kept_ids,
