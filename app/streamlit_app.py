@@ -146,7 +146,7 @@ def main() -> None:
         source = st.selectbox("Library", ["Demo library (37 compounds)", "Upload CSV"])
         uploaded = None
         if source == "Upload CSV":
-            uploaded = st.file_uploader("CSV with `smiles` (and optional `name`) columns", type=["csv"])
+            uploaded = st.file_uploader("CSV with `smiles` (and `name`) columns", type=["csv"])
 
         st.divider()
         query_smiles = st.text_input("Query SMILES", value="CC(=O)Oc1ccccc1C(=O)O")
@@ -166,9 +166,14 @@ def main() -> None:
         top_k = st.slider("Results (top-k)", 5, 50, 20)
 
         with st.expander("Tier 2: pocket-aware reranking (optional)"):
-            st.caption("Provide a binding-site PDB and the posed query ligand to enable interaction-fingerprint reranking.")
+            st.caption(
+                "Provide a binding-site PDB and the posed query ligand "
+                "to enable interaction-fingerprint reranking."
+            )
             pocket_upload = st.file_uploader("Binding-site PDB", type=["pdb"], key="pocket")
-            pose_upload = st.file_uploader("Posed query ligand (SDF/MOL)", type=["sdf", "mol"], key="pose")
+            pose_upload = st.file_uploader(
+                "Posed query ligand (SDF/MOL)", type=["sdf", "mol"], key="pose"
+            )
 
         run = st.button("Run cascade", type="primary", use_container_width=True)
 
@@ -185,7 +190,9 @@ def main() -> None:
             pocket = _pocket_from_upload(pocket_upload) if pocket_upload else None
             reference = _reference_from_upload(pose_upload) if pose_upload else None
             if pocket is not None and (reference is None or reference.GetNumConformers() == 0):
-                st.warning("Pocket ignored: the reference ligand must be a 3D SDF/MOL with a conformer.")
+                st.warning(
+                    "Pocket ignored: the reference ligand must be a 3D SDF/MOL with a conformer."
+                )
                 pocket, reference = None, None
 
             context = CampaignContext(
@@ -233,8 +240,12 @@ def main() -> None:
             use_container_width=True,
             hide_index=True,
             column_config={
-                "score": st.column_config.ProgressColumn("AEGIS score", min_value=0.0, max_value=1.0, format="%.3f"),
-                "uncertainty": st.column_config.ProgressColumn("Uncertainty", min_value=0.0, max_value=1.0, format="%.3f"),
+                "score": st.column_config.ProgressColumn(
+                    "AEGIS score", min_value=0.0, max_value=1.0, format="%.3f"
+                ),
+                "uncertainty": st.column_config.ProgressColumn(
+                    "Uncertainty", min_value=0.0, max_value=1.0, format="%.3f"
+                ),
                 "smiles": st.column_config.TextColumn("SMILES", width="medium"),
             },
         )
@@ -288,7 +299,8 @@ def main() -> None:
             image = Draw.MolsToGridImage(
                 [candidate.record.mol for candidate in top if candidate.record.mol is not None],
                 legends=[
-                    f"{i + 1}. {candidate.record.name} ({LABEL_BADGES.get(candidate.label, candidate.label)})"
+                    f"{i + 1}. {candidate.record.name} "
+                    f"({LABEL_BADGES.get(candidate.label, candidate.label)})"
                     for i, candidate in enumerate(top)
                 ],
                 molsPerRow=4,
